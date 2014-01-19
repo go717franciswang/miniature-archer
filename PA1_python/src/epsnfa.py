@@ -48,7 +48,16 @@ def union(s1,t1,s2,t2):
     st=[0]*2
 
     #Please fill in the program here
+    new_start = incCapacity()
+    new_final = incCapacity()
+    epsilon = 2
 
+    addEdge(new_start, epsilon, s1)
+    addEdge(new_start, epsilon, s2)
+    addEdge(t1, epsilon, new_final)
+    addEdge(t2, epsilon, new_final)
+
+    st = [new_start, new_final]
   
     return st
 
@@ -56,7 +65,11 @@ def union(s1,t1,s2,t2):
 #return an array of length 2, where the first element is the start state of the combined NFA. the second being the final state 
 def concat(s1,t1,s2,t2):
     st=[0]*2
+
     #Please fill in the program here
+    epsilon = 2
+    addEdge(t1, epsilon, s2)
+    st = [s1, t2]
 
     return st
 
@@ -64,7 +77,18 @@ def concat(s1,t1,s2,t2):
 #return an array of length 2, where the first element is the start state of the closure Epsilon-NFA. the second being the final state 
 def clo(s,t):
     st=[0]*2
+
     #Please fill in the program here
+    new_start = incCapacity()
+    new_final = incCapacity()
+    epsilon = 2
+
+    addEdge(new_start, epsilon, s)
+    addEdge(new_start, epsilon, new_final)
+    addEdge(t, epsilon, s)
+    addEdge(t, epsilon, new_final)
+
+    st = [new_start, new_final]
 
     return st
     
